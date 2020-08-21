@@ -73,14 +73,14 @@ Rails.application.configure do
   # Send deprecation notices to registered listeners.
   config.active_support.deprecation = :notify
 
-  config.action_mailer.smtp_settings = {
-    authentication: :plain,
-    address: 'smtp.mailgun.org',
-    port: 587,
-    domain: ENV['MAILGUN_DOMAIN'],
-    user_name: ENV['MAILGUN_USERNAME'],
-    password: ENV['MAILGUN_PASSWORD']
-  }
+  # config.action_mailer.smtp_settings = {
+  #   authentication: :plain,
+  #   address: 'smtp.mailgun.org',
+  #   port: 587,
+  #   domain: ENV['MAILGUN_DOMAIN'],
+  #   user_name: ENV['MAILGUN_USERNAME'],
+  #   password: ENV['MAILGUN_PASSWORD']
+  # }
 
   # ActionMailer Config
   config.action_mailer.default_url_options = { host: Rails.application.secrets.domain_name }

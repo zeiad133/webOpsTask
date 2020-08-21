@@ -49,14 +49,14 @@ Rails.application.configure do
   # number of complex assets.
   config.assets.debug = true
 
-  config.action_mailer.smtp_settings = {
-    authentication: :plain,
-    address: 'smtp.mailgun.org',
-    port: 587,
-    domain: ENV['MAILGUN_DOMAIN'],
-    user_name: ENV['MAILGUN_USERNAME'],
-    password: ENV['MAILGUN_PASSWORD']
-  }
+  # config.action_mailer.smtp_settings = {
+  #   authentication: :plain,
+  #   address: 'smtp.mailgun.org',
+  #   port: 587,
+  #   domain: ENV['MAILGUN_DOMAIN'],
+  #   user_name: ENV['MAILGUN_USERNAME'],
+  #   password: ENV['MAILGUN_PASSWORD']
+  # }
   # ActionMailer Config
   config.action_mailer.default_url_options = { host: 'localhost:3000' }
   config.action_mailer.delivery_method = :smtp
