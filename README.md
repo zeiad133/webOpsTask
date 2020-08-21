@@ -6,9 +6,11 @@ This is just a simple Rails template application of an admin panel with the [Adm
 **To run the application**
     *  **run docker-compose up** 
 
-**To test the apos**
+**To test the APIs**
     *  **run docker-compose up** 
-    *  **docker-compose exec website sh in other terminal** 
+    <br />
+    *  **run docker-compose exec website sh in other terminal** 
+    <br />
     *  **run rspec** 
 
 
