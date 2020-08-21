@@ -3,6 +3,5 @@ class PostDeletionJob < ApplicationJob
 
   def perform(*args)
     # Do something later
-    print("heeeeeeeeeh")
   end
 end

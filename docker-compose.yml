@@ -1,13 +1,52 @@
-web:
-  build: .
-  command: rails server -p 3000 -b '0.0.0.0'
-  volumes:
-    - .:/adminlte-rails-template
-  ports:
-    - "3000:3000"
-  links:
-    - postgres
-postgres:
-  image: postgres:9.4
-  ports:
-    - "5432"
+version: "3.7"
+services:
+ db:
+   image: "mysql:5.7"
+   environment:
+     MYSQL_ROOT_PASSWORD: root
+     MYSQL_USERNAME: root
+     MYSQL_PASSWORD: root
+   ports:
+      - "3307:3306"
+ redis:
+   image: "redis:4.0-alpine"
+   command: redis-server
+   volumes:
+      - "redis:/data"
+
+ website:
+   depends_on:
+      - "db"
+      - "redis"
+   build: .
+   ports:
+      - "3000:3000"
+   environment:
+     DB_USERNAME: root
+     DB_PASSWORD: root
+     DB_DATABASE: sample
+     DB_PORT: 3306
+     DB_HOST: db
+     RAILS_ENV: development
+     RAILS_MAX_THREADS: 5
+   volumes:
+      - ".:/app"
+      - "./config/docker/database.yml:/config/database.yml"
+   command: bundle exec rails s
+
+
+ sidekiq:
+   build: .
+   # command: "/usr/bin/wait-for-it.sh"
+   entrypoint: ["sh", "./config/docker/side.sh"]
+   depends_on:
+      - "db"
+      - "redis"
+   volumes:
+      - ".:/app"
+   env_file:
+      - .env
+
+volumes:
+ redis:
+ db:

@@ -1,6 +1,6 @@
 class Comment < ApplicationRecord
     belongs_to :post
-    belongs_to :user , optional:true
+    belongs_to :user 
     validates :description, presence: true 
     validates :description, length: { in: 1..255, allow_nil: false }
 

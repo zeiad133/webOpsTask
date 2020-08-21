@@ -18,7 +18,6 @@ class Api::PostsController < Api::ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    # print("aaa" , Sidekiq::Cron::Job)
     ActiveRecord::Base.transaction do 
     @post = Post.new(post_params)
     @post.user = current_user
