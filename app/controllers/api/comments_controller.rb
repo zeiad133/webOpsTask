@@ -7,6 +7,7 @@ class Api::CommentsController < Api::ApplicationController
     # comment /comments.json
     def create
       @comment = Comment.new(comment_params)
+      @comment.user = current_user
         if @comment.save
           render json: @comment, status: :created
         else
@@ -20,7 +21,7 @@ class Api::CommentsController < Api::ApplicationController
     def update
       authorize @comment
   
-        if @comment.update(comment_params)
+        if @comment.update(comment_update_params)
           render json: @comment, status: :ok
         else
           render json: {errors: @comment.errors}, status: :unprocessable_entity 
