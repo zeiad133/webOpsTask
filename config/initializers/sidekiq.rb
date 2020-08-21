@@ -7,3 +7,4 @@ end
 Sidekiq.configure_client do |config|
   config.redis = sidekiq_config
 end
+Sidekiq.default_worker_options = { retry: 0 }

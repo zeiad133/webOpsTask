@@ -7,8 +7,7 @@ class Post < ApplicationRecord
     validates :body, :title, length: { in: 1..255, allow_nil: false }
     after_create :delete_after_1_day
     def delete_after_1_day
-        print("here")
-        PostDeletionWorker.perform_in(10.second , self.id)
+        PostDeletionWorker.perform_in(1.day , self.id)
     end
 
 end

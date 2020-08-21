@@ -14,11 +14,7 @@ class Api::CommentsController < Api::ApplicationController
       end
     end
 
-    def index
-      print("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhh")
-      render json: "qwe"
-    end
-  
+
     # PATCH/PUT /comments/1
     # PATCH/PUT /comments/1.json
     def update
@@ -48,6 +44,10 @@ class Api::CommentsController < Api::ApplicationController
       # Never trust parameters from the scary internet, only allow the white list through.
       def comment_params
         params.require(:comment).permit(:description , :post_id)
+      end
+
+      def comment_update_params
+        params.require(:comment).permit(:description) #User can't move comment from post to another post
       end
   end
   

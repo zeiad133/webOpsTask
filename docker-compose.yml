@@ -21,7 +21,6 @@ services:
    build: .
    ports:
       - "3000:3000"
-   # command: rails s --port 3000
    environment:
      DB_USERNAME: root
      DB_PASSWORD: root
@@ -33,11 +32,13 @@ services:
    volumes:
       - ".:/app"
       - "./config/docker/database.yml:/config/database.yml"
+   command: bundle exec rails s
 
 
  sidekiq:
    build: .
-   # command: bundle exec sidekiq
+   # command: "/usr/bin/wait-for-it.sh"
+   entrypoint: ["sh", "./config/docker/side.sh"]
    depends_on:
       - "db"
       - "redis"
