@@ -3,7 +3,7 @@
 source 'https://rubygems.org'
 
 # Ruby version
-ruby '2.6.1'
+ruby '2.6.6'
 
 # General list of gems
 gem 'active_model_serializers', '~> 0.10.0'
@@ -41,6 +41,9 @@ gem 'redis-namespace'
 gem 'redis-rails'
 gem 'sidekiq'
 gem 'sidekiq-cron'
+gem 'sidekiq-scheduler'
+gem 'sidekiq-unique-jobs'
+gem 'sinatra', require: nil
 
 
 # Only Development env gems
@@ -55,6 +58,11 @@ group :development do
   gem 'web-console'
   gem 'sidekiq'
   gem 'sidekiq-cron'
+  gem 'sidekiq-scheduler'
+  gem 'sidekiq-unique-jobs'
+  gem 'sinatra', require: nil
+  gem 'database_cleaner'
+
 
   # Guard
   gem 'guard-bundler'

@@ -1,21 +1,18 @@
-FROM ruby:2.4.0
+FROM ruby:2.6-alpine
 
-# Install apt based dependencies.
-RUN apt-get update && apt-get install -y build-essential nodejs
+RUN apk update && apk upgrade && apk add ruby ruby-json ruby-io-console ruby-bundler ruby-irb ruby-bigdecimal tzdata postgresql-dev && apk add nodejs && apk add curl-dev ruby-dev build-base libffi-dev && apk add build-base libxslt-dev libxml2-dev ruby-rdoc mysql-dev sqlite-dev
 
-# Configure the main working directory.
-RUN mkdir -p /adminlte-rails-template
-WORKDIR /adminlte-rails-template
+RUN mkdir /app
+WORKDIR /app
 
-# Copy the Gemfile as well as the Gemfile.lock and install the RubyGems.
 COPY Gemfile Gemfile.lock ./
-RUN gem install bundler && bundle install --jobs 20 --retry 5
+RUN gem install ovirt-engine-sdk -v '4.3.0' --source 'https://rubygems.org/'
+RUN bundle install --binstubs
 
-# Copy the main application.
-COPY . ./
+COPY . .
 
-# Expose port 3000 to the Docker host.
 EXPOSE 3000
-
-# The main command to run when the container starts.
-CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0"]
+# CMD ["bundle","exec", "sideqie"]
+ENTRYPOINT ["sh", "./config/docker/startup.sh"]
+# RUN rails db:migrate 2>/dev/null || rails db:create db:migrate
+# CMD ["rails", "server", "-b", "0.0.0.0"]

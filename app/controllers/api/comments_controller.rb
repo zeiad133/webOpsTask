@@ -13,6 +13,11 @@ class Api::CommentsController < Api::ApplicationController
           render json: {errors: @comment.errors}, status: :unprocessable_entity 
       end
     end
+
+    def index
+      print("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhh")
+      render json: "qwe"
+    end
   
     # PATCH/PUT /comments/1
     # PATCH/PUT /comments/1.json

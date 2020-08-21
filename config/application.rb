@@ -40,6 +40,10 @@ module AdminlteRailsTemplate
     config.i18n.default_locale = :en
     config.time_zone = 'Cairo'
     config.active_record.default_timezone = :local # Or :utc
+    logger           = ActiveSupport::Logger.new(STDOUT)
+    logger.formatter = config.log_formatter
+    config.log_tags  = [:subdomain, :uuid]
+    config.logger    = ActiveSupport::TaggedLogging.new(logger)
 
     config.middleware.insert_before 0, Rack::Cors do
       allow do
