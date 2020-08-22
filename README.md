@@ -6,7 +6,7 @@ This is just a simple Rails template application of an admin panel with the [Adm
 **To run the application**
   <br />
 
-*  **Download Zip Folder** 
+*  **Download Zip Folder Don't Clone** 
 
 *  **run docker-compose up** 
 
